@@ -1,36 +1,67 @@
-function computerPlay () {
-    let choice = ['Rock', 'Paper', 'Scissors'];
-    let random = choice[Math.floor(Math.random() * choice.length)];
-    return random;
-}
+function game(){
+    let playerPoints = 0; 
+    let computerPoints = 0; 
+    let wins = 5;
+  
+    for(let i = 0; playerPoints < wins; i++) {
+      let playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
+      let computerSelection = computerPlay();
+      function computerPlay() { return (["paper","scissors","rock"])[Math.random() * 3 | 0]; }
+    
+      let round = playRound(playerSelection, computerSelection);
+      if(round === "wins"){
+        playerPoints++;
+        console.log("You Win");
+      } else if(round === "loses"){
+        computerPoints++;
+        console.log("You Lose");
+      } else if(round === "ties") {
+        console.log("tied");
+      } 
+    }
+  
+    if(playerPoints > computerPoints){
+      console.log('');
+      console.log("Congratulations!  You beat the computer " + playerPoints + " to " + computerPoints);
+    } else {
+      console.log("Sorry!  You lost to the computer " + computerPoints + " to " + playerPoints);
+    }
+  } 
 
-function playRound (playerSelection, computerSelection){
+function playRound(playerSelection, computerSelection) {  
+    if (playerSelection == 'rock') {
+      if (computerSelection == 'scissors') {
+        return 'wins';
+      } else if (computerSelection == 'paper') {
+        return 'loses';
+      } else {
+        return 'ties';
+      } 
+    }
+    if (playerSelection == 'paper') {
+      if (computerSelection == 'rock') {
+        return 'wins';
+      } else if (computerSelection == 'scissors') {
+        return 'loses';
+      } else {
+        return 'ties';
+      } 
+    }
+    if (playerSelection == 'scissors') {
+      if (computerSelection == 'rock') {
+        return 'loses';
+      } else if (computerSelection == 'paper') {
+        return 'wins';
+      } else {
+        return 'ties';
+      } 
+    }
+  }
+ 
 
-if (playerSelection === computerSelection) {    
-    return (`It's a Draw!`);
-}   else if ((playerSelection === 'Rock') && (computerSelection === 'Scissors')) {
-    return (`You Win! Rock beats Scissors!`);
-}
-    else if ((playerSelection === 'Rock') && (computerSelection === 'Paper')) {
-    return (`You Lose! Scissors beats Rock!`);
-}
-    else if ((playerSelection === 'Paper') && (computerSelection === 'Scissors')) {
-    return (`You Lose! Scissors beats Paper!`);
-}
-    else if ((playerSelection === 'Paper') && (computerSelection === 'Rock')) {
-    return (`You Win! Paper beats Rock!`);
-}
-    else if ((playerSelection === 'Scissors') && (computerSelection === 'Paper')) {
-    return (`You Win! Scissors beats Paper!`);
-}
-    else if ((playerSelection === 'Scissors') && (computerSelection === 'Rock')) {
-    return (`You Lose! Rock beats Scissors`);
-}
+console.log(game())
 
-    return (`You Lose! Paper beats Rock`);
-}
 
-let playerSelection = prompt("What do you Select").toLocaleLowerCase();
-//have this tied into the playRound function?
 
-console.log(computerPlay(), playerSelection)
+
+
