@@ -1,4 +1,4 @@
-function game(){
+function playGame(){
     let playerPoints = 0; 
     let computerPoints = 0; 
     let wins = 5;
@@ -6,7 +6,7 @@ function game(){
     for(let i = 0; playerPoints < wins; i++) {
       let playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
       let computerSelection = computerPlay();
-      function computerPlay() { return (["paper","scissors","rock"])[Math.random() * 3 | 0]; }
+      function computerPlay () { return (["paper","scissors","rock"])[Math.random() * 3 | 0]; }
     
       let round = playRound(playerSelection, computerSelection);
       if(round === "wins"){
@@ -59,7 +59,7 @@ function playRound(playerSelection, computerSelection) {
   }
  
 
-console.log(game())
+
 
 
 

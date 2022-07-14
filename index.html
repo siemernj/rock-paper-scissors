@@ -4,11 +4,69 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock, Paper, Scissors!</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+     <div class="mainContainer">
+        <div class="phrase">
+            <h2>Let's PLAY!</h2>
+        </div>
 
+        <div class="container">
+
+
+            <div class="player">
+                <div class="playerScoreLogo">
+                    <h2>0</h2>
+                </div>
+                <div class="playerIcon">
+                    <img src="./icons/playerPaper.png">
+                    <img src="./icons/playerScissors.png">
+                    <img src="./icons/playerRock.png">
+                </div>
+                <div class="playerChoiceList">
+                    <ul id="buttons">
+                        <li><a href="#">  Rock   </a></li>
+                        <li><a href="#">  Paper </a></li>
+                        <li><a href="#">Scissors</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="computer">
+                <div class="computerScoreLogo">
+                    <h3>0</h3>
+                </div>
+                <div class="computerIcon">
+                    <img src="./icons/computerPaper.png">
+                    <img src="./icons/computerRock.png">
+                    <img src="./icons/computerScissors.png">
+
+                </div>
+                <div class="computerChoiceList">
+                    <ul id="buttons">
+                        <li><a href="#">  Rock   </a></li>
+                        <li><a href="#">  Paper </a></li>
+                        <li><a href="#">Scissors</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <footer>
+        Built by Nick:
+        <a href="https://github.com/siemernj">Github</a>
+       
+    </footer>
+    
 </body>
-</html>
 <script src="./script.js"></script>
+</html>
