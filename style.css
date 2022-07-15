@@ -78,13 +78,13 @@ body {
     display: flex;
 }
 
-.playerScoreLogo {
+.playerScore{
     color:#8338ec;
     font-size: 27px;
 
 }
 
-.computerScoreLogo  {
+.computerScore  {
     color:#ff006e;
     font-size: 27px;
 }
@@ -129,6 +129,9 @@ body {
 
 }
 
+.playerChoiceList #buttons li a:hover {
+    background-color: #ff006e;
+}
 
 
 footer{
