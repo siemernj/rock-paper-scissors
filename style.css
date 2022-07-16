@@ -131,6 +131,12 @@ body {
 
 .playerChoiceList #buttons li a:hover {
     background-color: #ff006e;
+    transition: 0.7s;
+}
+
+.playerChoiceList #buttons li a:focus {
+    background-color: #ffbe0b;
+
 }
 
 

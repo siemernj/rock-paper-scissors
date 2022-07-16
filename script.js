@@ -1,93 +1,62 @@
-const iconRockPlayer = document.querySelector(".iconPlayerRock");
-const iconPaperPlayer = document.querySelector(".iconPlayerPaper");
-const iconScissorsPlayer = document.querySelector(".iconScissorsPlayer");
-const iconRockComputer = document.querySelector(".iconRockComputer");
-const iconPaperComputer = document.querySelector(".iconPaperComputer");
-const iconScissorsComputer = document.querySelector(".iconScissorsComputer");
-const rockButtonPlayer = document.querySelector(".rockButtonPlayer");
-const paperButtonPlayer = document.querySelector(".paperButtonPlayer");
-const scissorButtonPlayer = document.querySelector(".scissorsButtonPlayer");
-const rockButtonComputer = document.querySelector(".rockButtonComputer");
-const paperButtonComputer = document.querySelector(".paperButtonComputer");
-const scissorsButtonComputer = document.querySelector(".scissorsButtonComputer");
-const playerScore = document.querySelector(".playerScore");
-const computerScore = document.querySelector(".computerScore");
-const phrase = document.querySelector(".phrase");
+const selectionButtons = document.querySelectorAll('[data-selection]');
+const computerScore = document.querySelector('[data-computer-score]');
+const yourScore = document.querySelector('[data-your-score]');
+const SELECTIONS = [
+  {
+    name: 'rock',
+    emoji: '',
+    beats: 'scissors'
+  },
+  {
+    name: 'paper',
+    emoji: '',
+    beats: 'rock'
+  },
+  {
+    name: 'scissors',
+    emoji: '',
+    beats: 'paper'
+  }
 
+]
 
+selectionButtons.forEach(selectionButtons => {
+  selectionButtons.addEventListener('click', e => {
+    const selectionName = selectionButtons.dataset.selection;
+    const selection = SELECTIONS.find(selection => selection.name === selectionName)
+    makeSelection(selection)
+  })
+})
 
-const startGame = `Let's PLAY!`
-const tieResponses = [`Rats you tied!`, `You're exactly as good as the computer!`, `It's a tie!`];
-const winResponses = [`Hooray you win!`, `Wow you won!`, `Congrats! Winner!`, `Winner Winner Chicken Dinner`];
-const lossResponses = [`Haha you Lost!`, `You Lose!`, `Try Again!`, `Better luck next time!`];
+function makeSelection(selection) {
+  const computerSelection = randomSelection()
+  const youreWinner = isWinner(selection, computerSelection);
+  const computerWinner = isWinner(computerSelection, selection);
+  console.log(computerSelection)
 
+  addSelectionResult(computerSelection, computerWinner);
+  addSelectionResult(selection, youreWinner);
 
-const iconsPlayer = [iconRockPlayer, iconPaperPlayer, iconScissorsPlayer];
-const iconsComputer = [iconRockComputer, iconPaperComputer, iconScissorsComputer];
+  if (youreWinner) incrementScore(yourScore)
+  if (computerWinner) incrementScore(computerScore)
+} 
 
-const playerChoice = [rockButtonPlayer, paperButtonPlayer, scissorButtonPlayer];
-const computerChoice = [rockButtonComputer, paperButtonComputer, scissorsButtonComputer];
-
-const options = [`rock`, `paper`, `scissors`]
-
-
-
-const playerButtons = document.querySelector("#buttons")
-
-
-
-
-
-const keyCodes = {
-  82: `rock`,
-  80: `paper`,
-  83: `scissors`,
+function incrementScore(scoreSpan) {
+  scoreSpan.innerText = parseInt(scoreSpan.innerText) + 1
 }
 
-let playerPoints = 0; 
-let computerPoints = 0; 
-let wins = 0;
+function addSelectionResult(selection, winner) {
 
-
-function pageLoad () {
-  document.getElementById("iconScissorsComputer").style.display = "none";
-  document.getElementById("iconPaperComputer").style.display = ""
-  document.getElementById("iconRockComputer").style.display = "none"
-  document.getElementById("iconScissorsPlayer").style.display = "none"
-  document.getElementById("iconPaperPlayer").style.display = "none"
-  document.getElementById("iconRockPlayer").style.display = ""
-  playerScore.textContent = playerPoints;
-  computerScore.textContent = computerPoints;
-  phrase.textContent = startGame;
 }
 
-playerButtons.addEventListener("click", function onClick(e) {
-  e.target.style.backgroundColor = `#FFBE0B`;
-});
+function isWinner(selection, opponentSelection) {
+  return selection.beats === opponentSelection.name
+}
 
-
-
-
-
-console.log(pageLoad())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function randomSelection () {
+  const randomIndex = Math.floor(Math.random() * SELECTIONS.length);
+  return SELECTIONS[randomIndex];
+}
 
 
 

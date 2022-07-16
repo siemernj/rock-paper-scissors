@@ -21,7 +21,7 @@
 
             <div class="player">
                 <div class="playerScore">
-                    <h2></h2>
+                    <h2 data-your-score>0</h2>
                 </div>
                 <div class="playerIcon">
                     <img id="iconPaperPlayer" src="./icons/playerPaper.png">
@@ -30,9 +30,9 @@
                 </div>
                 <div class="playerChoiceList">
                     <ul id="buttons">
-                        <li class="rockButtonPlayer"><a href="#">  Rock   </a></li>
-                        <li class="paperButtonPlayer"><a href="#">  Paper </a></li>
-                        <li class="scissorsButtonPlayer"><a href="#">Scissors</a></li>
+                        <li class="rockButtonPlayer" data-selection="rock"><a href="#">  Rock   </a></li>
+                        <li class="paperButtonPlayer" data-selection="paper"><a href="#">  Paper </a></li>
+                        <li class="scissorsButtonPlayer" data-selection="scissors"><a href="#">Scissors</a></li>
                     </ul>
                 </div>
             </div>
@@ -40,7 +40,7 @@
 
             <div class="computer">
                 <div class="computerScore">
-                    <h3></h3>
+                    <h3 data-computer-score>0</h3>
                 </div>
                 <div class="computerIcon">
                     <img id="iconPaperComputer" src="./icons/computerPaper.png">
