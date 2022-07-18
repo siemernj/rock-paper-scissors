@@ -1,6 +1,31 @@
 const selectionButtons = document.querySelectorAll('[data-selection]');
-const computerScore = document.querySelector('[data-computer-score]');
-const yourScore = document.querySelector('[data-your-score]');
+let computerScore = document.querySelector('[data-computer-score]');
+let yourScore = document.querySelector('[data-your-score]');
+const mainContainer = document.querySelector('.mainContainer');
+const announcement = document.querySelector('.announcement');
+const active = document.querySelector('.active');
+const loseAnnouncement = document.querySelector('.lose');
+const winAnnouncement = document.querySelector('.win');
+const cScore = document.querySelector('.cScore');
+const pScore = document.querySelector('.pScore');
+const h1 = document.querySelector('h1');
+const tieResponses = [
+  `You Tied!`, 
+  `A tie, Not bad, not great!`, 
+  `You both picked the same thing!`
+];
+const winResponses = [
+	`Hooray you won!`,
+	`You have defeated the computer!`,
+	`Well done!`,
+	`Winner Winner Chicken Dinner!`,
+];
+const lossResponses = [
+	`Ouch you lost to a computer!`,
+	`Maybe next time!`,
+	`The computer has won!`,
+	`You are NOT smarter than a computer!`,
+];
 const SELECTIONS = [
   {
     name: 'rock',
@@ -28,29 +53,49 @@ selectionButtons.forEach(selectionButtons => {
   })
 })
 
+
 function makeSelection(selection) {
   const computerSelection = randomSelection()
   const youreWinner = isWinner(selection, computerSelection);
   const computerWinner = isWinner(computerSelection, selection);
-  console.log(computerSelection)
+  
 
   addSelectionResult(computerSelection, computerWinner);
   addSelectionResult(selection, youreWinner);
 
-  if (youreWinner) incrementScore(yourScore)
-  if (computerWinner) incrementScore(computerScore)
+  if (youreWinner) incrementScore(yourScore);
+  if (computerWinner) incrementScore(computerScore);
+
+  if (youreWinner) h1.innerText = winResponses[Math.floor(Math.random() * 3)];
+  else if (computerWinner) h1.innerText = lossResponses[Math.floor(Math.random() * 3)];
+  else h1.innerText = tieResponses[Math.floor(Math.random() * 3)];
+
 } 
 
 function incrementScore(scoreSpan) {
-  scoreSpan.innerText = parseInt(scoreSpan.innerText) + 1
+  const wins = '5'
+  const loses = '5'
+  scoreSpan.innerText = parseInt(scoreSpan.innerText) + 1;
+  if (pScore.innerText === wins) {
+    active.style.display = 'flex'
+    mainContainer.style.display = 'none';
+    restartGame()
+  } else if (cScore.innerText === loses) {
+    winAnnouncement.classList.remove('active');
+    loseAnnouncement.classList.add('active');
+    mainContainer.style.display = 'none';
+    restartGame()
+  } 
 }
+
 
 function addSelectionResult(selection, winner) {
 
 }
 
 function isWinner(selection, opponentSelection) {
-  return selection.beats === opponentSelection.name
+  return selection.beats === opponentSelection.name;
+  
 }
 
 function randomSelection () {
@@ -58,68 +103,31 @@ function randomSelection () {
   return SELECTIONS[randomIndex];
 }
 
+function showComputerSelection (computerSelection) {
+  const computerButtons = document.querySelector('.computerButtons');
 
-
-
-function game(){
-  let playerPoints = 4; 
-  let computerPoints = 0; 
-  let wins = 5;
-
-  for(let i = 0; playerPoints < wins; i++) {
-    let playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
-    let computerSelection = computerPlay();
-    function computerPlay() { return (["paper","scissors","rock"])[Math.random() * 3 | 0]; }
-  
-    let round = playRound(playerSelection, computerSelection);
-    if(round === "wins"){
-      playerPoints++;
-      console.log("You Win");
-    } else if(round === "loses"){
-      computerPoints++;
-      console.log("You Lose");
-    } else if(round === "ties") {
-      console.log("tied");
-    } 
-  }
-
-  if(playerPoints > computerPoints){
-    console.log('');
-    console.log("Congratulations!  You beat the computer " + playerPoints + " to " + computerPoints);
-  } else {
-    console.log("Sorry!  You lost to the computer " + computerPoints + " to " + playerPoints);
-  }
-} 
-
-function playRound(playerSelection, computerSelection) {  
-  if (playerSelection == 'rock') {
-    if (computerSelection == 'scissors') {
-      return 'wins';
-    } else if (computerSelection == 'paper') {
-      return 'loses';
-    } else {
-      return 'ties';
-    } 
-  }
-  if (playerSelection == 'paper') {
-    if (computerSelection == 'rock') {
-      return 'wins';
-    } else if (computerSelection == 'scissors') {
-      return 'loses';
-    } else {
-      return 'ties';
-    } 
-  }
-  if (playerSelection == 'scissors') {
-    if (computerSelection == 'rock') {
-      return 'loses';
-    } else if (computerSelection == 'paper') {
-      return 'wins';
-    } else {
-      return 'ties';
-    } 
-  }
 }
+
+function restartGame() {
+ announcement.addEventListener('click', () => {
+    mainContainer.style.display = 'flex';
+    active.style.display = 'none';
+  });
+  loseAnnouncement.addEventListener('click', () => {
+    loseAnnouncement.classList.remove('active');
+    winAnnouncement.classList.add('active');
+    mainContainer.style.display = 'flex';
+  });
+  pScore.innerText = 0;
+  cScore.innerText = 0
+  h1.innerText = `Let's Play`;
+  makeSelection();
+
+}
+
+
+
+
 
 
 

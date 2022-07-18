@@ -13,7 +13,7 @@
 <body>
      <div class="mainContainer">
         <div class="phrase">
-            <h2>Let's PLAY!</h2>
+            <h1>Let's PLAY!</h1>
         </div>
 
         <div class="container">
@@ -21,7 +21,7 @@
 
             <div class="player">
                 <div class="playerScore">
-                    <h2 data-your-score>0</h2>
+                    <h2 class="pScore" data-your-score>0</h2>
                 </div>
                 <div class="playerIcon">
                     <img id="iconPaperPlayer" src="./icons/playerPaper.png">
@@ -40,7 +40,7 @@
 
             <div class="computer">
                 <div class="computerScore">
-                    <h3 data-computer-score>0</h3>
+                    <h2 class="cScore" data-computer-score>0</h2>
                 </div>
                 <div class="computerIcon">
                     <img id="iconPaperComputer" src="./icons/computerPaper.png">
@@ -49,18 +49,18 @@
 
                 </div>
                 <div class="computerChoiceList">
-                    <ul id="buttons">
+                    <ul class="computerButtons " id="buttons">
                         <li class="rockButtonComputer"><a href="#">  Rock   </a></li>
                         <li class="paperButtonComputer"><a href="#">  Paper </a></li>
                         <li class="scissorsButtonComputer"><a href="#">Scissors</a></li>
                     </ul>
                 </div>
             </div>
-
-
         </div>
     </div>
-
+    <div class="announcement win active"> You WIN! Play Again? </div>
+    <div class="announcement lose "> You Lose! Play Again? </div>
+    
     <footer>
         Built by Nick:
         <a href="https://github.com/siemernj">Github</a>
