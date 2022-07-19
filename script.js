@@ -4,6 +4,7 @@ let yourScore = document.querySelector('[data-your-score]');
 const mainContainer = document.querySelector('.mainContainer');
 const announcement = document.querySelector('.announcement');
 const active = document.querySelector('.active');
+const active2 = document.querySelector('.active2');
 const loseAnnouncement = document.querySelector('.lose');
 const winAnnouncement = document.querySelector('.win');
 const cScore = document.querySelector('.cScore');
@@ -47,9 +48,27 @@ const SELECTIONS = [
 
 selectionButtons.forEach(selectionButtons => {
   selectionButtons.addEventListener('click', e => {
+    const rockPlayer = document.getElementById('iconRockPlayer');
+    const scissorsPlayer = document.getElementById('iconScissorsPlayer');
+    const iconScissorsPlayer = scissorsPlayer.getAttribute('hidden');
+    const paperPlayer = document.getElementById('iconPaperPlayer');
+    const iconPaperPlayer = paperPlayer.getAttribute('hidden');
     const selectionName = selectionButtons.dataset.selection;
     const selection = SELECTIONS.find(selection => selection.name === selectionName)
     makeSelection(selection)
+    if (selection.name === 'paper') {
+      rockPlayer.setAttribute("hidden", "hidden");
+      scissorsPlayer.setAttribute("hidden", "hidden");
+      paperPlayer.removeAttribute("hidden");
+    } else if (selection.name === 'scissors') {
+      rockPlayer.setAttribute("hidden", "hidden");
+      paperPlayer.setAttribute("hidden", "hidden");
+      scissorsPlayer.removeAttribute("hidden");
+    } else if (selection.name === 'rock') {
+      paperPlayer.setAttribute("hidden", "hidden");
+      scissorsPlayer.setAttribute("hidden", "hidden");
+      rockPlayer.removeAttribute("hidden");
+    }
   })
 })
 
@@ -58,7 +77,15 @@ function makeSelection(selection) {
   const computerSelection = randomSelection()
   const youreWinner = isWinner(selection, computerSelection);
   const computerWinner = isWinner(computerSelection, selection);
-  
+  const rockComputer = document.getElementById('iconRockComputer');
+  const scissorsComputer = document.getElementById('iconScissorsComputer');
+  const iconScissorsComputer = scissorsComputer.getAttribute('hidden');
+  const paperComputer = document.getElementById('iconPaperComputer');
+  const iconPaperCompter = paperComputer.getAttribute('hidden');
+  const cRock = document.querySelector('.cRock');
+  const cScissors = document.querySelector('.cScissors');
+  const cPaper = document.querySelector('.cPaper');
+
 
   addSelectionResult(computerSelection, computerWinner);
   addSelectionResult(selection, youreWinner);
@@ -69,6 +96,31 @@ function makeSelection(selection) {
   if (youreWinner) h1.innerText = winResponses[Math.floor(Math.random() * 3)];
   else if (computerWinner) h1.innerText = lossResponses[Math.floor(Math.random() * 3)];
   else h1.innerText = tieResponses[Math.floor(Math.random() * 3)];
+
+  if (computerSelection.name === 'paper') {
+    rockComputer.setAttribute("hidden", "hidden");
+    scissorsComputer.setAttribute("hidden", "hidden");
+    paperComputer.removeAttribute("hidden");
+    cPaper.style.backgroundColor = "#ffbe0b";
+    cScissors.style.backgroundColor = "#FFD4C5";
+    cRock.style.backgroundColor = "#FFD4C5";
+  } else if (computerSelection.name === 'scissors') {
+    rockComputer.setAttribute("hidden", "hidden");
+    paperComputer.setAttribute("hidden", "hidden");
+    scissorsComputer.removeAttribute("hidden");
+    cScissors.style.backgroundColor = "#ffbe0b";
+    cRock.style.backgroundColor = "#FFD4C5";
+    cPaper.style.backgroundColor = "#FFD4C5";
+  } else if (computerSelection.name === 'rock') {
+    paperComputer.setAttribute("hidden", "hidden");
+    scissorsComputer.setAttribute("hidden", "hidden");
+    rockComputer.removeAttribute("hidden");
+    cRock.style.backgroundColor = "#ffbe0b";
+    cPaper.style.backgroundColor = "#FFD4C5";
+    cScissors.style.backgroundColor = "#FFD4C5";
+  }
+
+
 
 } 
 
@@ -81,8 +133,7 @@ function incrementScore(scoreSpan) {
     mainContainer.style.display = 'none';
     restartGame()
   } else if (cScore.innerText === loses) {
-    winAnnouncement.classList.remove('active');
-    loseAnnouncement.classList.add('active');
+    active2.style.display = 'flex';
     mainContainer.style.display = 'none';
     restartGame()
   } 
@@ -90,7 +141,12 @@ function incrementScore(scoreSpan) {
 
 
 function addSelectionResult(selection, winner) {
+}
 
+function showSelection (selection) {
+   if (selection.name === 'rock') {
+    console.log('hello World')
+   }
 }
 
 function isWinner(selection, opponentSelection) {
@@ -103,19 +159,13 @@ function randomSelection () {
   return SELECTIONS[randomIndex];
 }
 
-function showComputerSelection (computerSelection) {
-  const computerButtons = document.querySelector('.computerButtons');
-
-}
-
 function restartGame() {
  announcement.addEventListener('click', () => {
     mainContainer.style.display = 'flex';
     active.style.display = 'none';
   });
   loseAnnouncement.addEventListener('click', () => {
-    loseAnnouncement.classList.remove('active');
-    winAnnouncement.classList.add('active');
+    active2.style.display = 'none';
     mainContainer.style.display = 'flex';
   });
   pScore.innerText = 0;

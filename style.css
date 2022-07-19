@@ -163,6 +163,15 @@ body {
     color: #ffbe0b;
 }
 
+.active2{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 10vh;
+    color: #ffbe0b;
+}
+
+
 
 footer{
     color: #3a86ff;
@@ -176,4 +185,7 @@ img {
     padding-top: 25px;
 }
 
+.playerIcon {
+    display : 'none';
+}
 

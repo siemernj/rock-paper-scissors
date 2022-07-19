@@ -24,8 +24,8 @@
                     <h2 class="pScore" data-your-score>0</h2>
                 </div>
                 <div class="playerIcon">
-                    <img id="iconPaperPlayer" src="./icons/playerPaper.png">
-                    <img id="iconScissorsPlayer" src="./icons/playerScissors.png" >
+                    <img hidden id="iconPaperPlayer" src="./icons/playerPaper.png">
+                    <img hidden id="iconScissorsPlayer" src="./icons/playerScissors.png" >
                     <img id="iconRockPlayer" src="./icons/playerRock.png">
                 </div>
                 <div class="playerChoiceList">
@@ -43,23 +43,23 @@
                     <h2 class="cScore" data-computer-score>0</h2>
                 </div>
                 <div class="computerIcon">
-                    <img id="iconPaperComputer" src="./icons/computerPaper.png">
-                    <img id="iconRockComputer" src="./icons/computerRock.png">
+                    <img hidden id="iconPaperComputer" src="./icons/computerPaper.png">
+                    <img hidden id="iconRockComputer" src="./icons/computerRock.png">
                     <img id="iconScissorsComputer" src="./icons/computerScissors.png">
 
                 </div>
                 <div class="computerChoiceList">
                     <ul class="computerButtons " id="buttons">
-                        <li class="rockButtonComputer"><a href="#">  Rock   </a></li>
-                        <li class="paperButtonComputer"><a href="#">  Paper </a></li>
-                        <li class="scissorsButtonComputer"><a href="#">Scissors</a></li>
+                        <li class="rockButtonComputer"><a class = "cRock" href="#">  Rock   </a></li>
+                        <li class="paperButtonComputer"><a class = "cPaper" href="#">  Paper </a></li>
+                        <li class="scissorsButtonComputer"><a class = "cScissors" href="#">Scissors</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
     <div class="announcement win active"> You WIN! Play Again? </div>
-    <div class="announcement lose "> You Lose! Play Again? </div>
+    <div class="announcement lose active2"> You Lose! Play Again? </div>
     
     <footer>
         Built by Nick:
